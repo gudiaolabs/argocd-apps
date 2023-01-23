@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: muscat-staging-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: charts/muscat
+    repoURL: 'git@github.com:gudiaolabs/gudiaolabs-charts.git'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: muscat
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
