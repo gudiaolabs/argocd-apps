@@ -3,6 +3,9 @@ kind: Application
 metadata:
   name: gitops-argocd-app
   namespace: argocd
+  # Add labels to your application object.
+  labels:
+    name: apps  
 spec:
   project: default
   source:
