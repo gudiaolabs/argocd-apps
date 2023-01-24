@@ -1,0 +1,39 @@
+# Git repositories configure Argo CD with (optional).
+# This list is updated when configuring/removing repos from the UI/CLI
+# Note: the last example in the list would use a repository credential template, configured under "argocd-repo-creds.yaml".
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-apps
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+    name: argo-config  
+stringData:
+  url: git@github.com:gudiaolabs/argocd-apps
+  sshPrivateKey: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+    QyNTUxOQAAACAEhKCmsvQWigVuWkMlyICjuxHRbX7wWBEfZYhcsf1z6AAAAJjQoKu10KCr
+    tQAAAAtzc2gtZWQyNTUxOQAAACAEhKCmsvQWigVuWkMlyICjuxHRbX7wWBEfZYhcsf1z6A
+    AAAEC0VI+kVcujgo8wd7zP+jMGFfk9FWflQ69mJAybbqudfgSEoKay9BaKBW5aQyXIgKO7
+    EdFtfvBYER9liFyx/XPoAAAAEmNzdHVyaW9uQGdtYWlsLmNvbQECAw==
+    -----END OPENSSH PRIVATE KEY-----
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gudiaolabs-charts
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  url: git@github.com:gudiaolabs/gudiaolabs-charts.git
+  sshPrivateKey: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+    QyNTUxOQAAACAEhKCmsvQWigVuWkMlyICjuxHRbX7wWBEfZYhcsf1z6AAAAJjQoKu10KCr
+    tQAAAAtzc2gtZWQyNTUxOQAAACAEhKCmsvQWigVuWkMlyICjuxHRbX7wWBEfZYhcsf1z6A
+    AAAEC0VI+kVcujgo8wd7zP+jMGFfk9FWflQ69mJAybbqudfgSEoKay9BaKBW5aQyXIgKO7
+    EdFtfvBYER9liFyx/XPoAAAAEmNzdHVyaW9uQGdtYWlsLmNvbQECAw==
+    -----END OPENSSH PRIVATE KEY-----

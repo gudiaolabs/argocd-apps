@@ -3,6 +3,9 @@ kind: Application
 metadata:
   name: registry-gudiaolabs
   namespace: argocd
+  # Add labels to your application object.
+  labels:
+    name: argo-config  
 spec:
   destination:
     namespace: argocd
